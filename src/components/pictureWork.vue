@@ -21,7 +21,6 @@
                     <img   class="img" draggable="false"      :src="item.src" alt="无内容" >
                     </div>
                 </div>
- 
 
             </div>
     </div>
@@ -158,7 +157,12 @@ export default {
 
             if(this.pushImg===true&&e.clientX>this.x1&&e.clientX<this.x2&&e.clientY>this.y1&&e.clientY<this.y2){
                 console.log(e);
-                if(this.rulerPictureList.length<4)
+            let sum=item.imgWidth;
+            for(let picture of this.rulerPictureList){
+                sum=sum+picture.imgWidth;
+            }
+            console.log(sum);
+                if(sum<=950)
             this.rulerPictureList.push(item);
             this.pushImg=false;
             }
@@ -185,6 +189,7 @@ export default {
         },
         rulerImgDown(item,i,e){
             e.target.style.removeProperty("transition")
+            e.target.style.position="absolute;"
             this.nowI=i;
             this.mousedown=true;
             this.isMove=true;
